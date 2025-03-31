@@ -1,0 +1,5 @@
+name: VoxelOdyssey
+version: '1.0.0'
+main: com.guy7cc.voxelodyssey.game.VOPlugin
+api-version: '1.21'
+depends: [VoxelOdysseyCore]

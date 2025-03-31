@@ -1,0 +1,15 @@
+name: VoxelOdysseyCore
+version: '1.0.0'
+main: com.guy7cc.voxelodyssey.core.VOCorePlugin
+api-version: '1.21'
+
+commands:
+  voitem:
+    description: Get custom items in Voxel Odyssey.
+    permission: vo.command.voitem
+    permission-message: You do not have permission to perform this command.
+
+permissions:
+  vo.command.voitem:
+    description: Get custom items in Voxel Odyssey.
+    default: op

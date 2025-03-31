@@ -1,0 +1,30 @@
+name: VoxelOdysseyDeveloperTools
+version: '1.0.0'
+main: com.guy7cc.voxelodyssey.dev.VODevPlugin
+api-version: '1.21'
+depend: [VoxelOdysseyCore, WorldEdit]
+
+commands:
+  vodev:
+    description: Developer command.
+    permission: vodev.command.vodev
+    permission-message: You do not have permission to perform this command.
+  vodevhat:
+    description: Developer command.
+    permission: vodev.command.vodevhat
+    permission-message: You do not have permission to perform this command.
+  vodevbanner:
+    description: Developer command.
+    permission: vodev.command.vodevhat
+    permission-message: You do not have permission to perform this command.
+
+permissions:
+  vodev.command.vodev:
+    description: Developer command.
+    default: op
+  vodev.command.vodevhat:
+    description: Developer command.
+    default: op
+  vodev.command.vodevbanner:
+    description: Developer command.
+    default: op
