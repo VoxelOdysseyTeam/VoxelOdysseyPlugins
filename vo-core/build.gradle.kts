@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.16"
+    id("com.github.hierynomus.license") version "0.16.1"
 }
 
 group = "com.guy7cc"
@@ -29,6 +30,13 @@ java {
     if (JavaVersion.current() < JavaVersion.toVersion(targetJavaVersion)) {
         toolchain.languageVersion.set(JavaLanguageVersion.of(targetJavaVersion))
     }
+}
+
+license {
+    header = file("$rootDir/config/license/header.txt")
+    exclude("**/*")
+    include("**/*.java")
+    mapping("java", "SLASHSTAR_STYLE")
 }
 
 tasks.withType<JavaCompile>().configureEach {
