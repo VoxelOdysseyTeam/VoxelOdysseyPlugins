@@ -14,7 +14,6 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
-    mavenLocal()
 }
 
 dependencies {

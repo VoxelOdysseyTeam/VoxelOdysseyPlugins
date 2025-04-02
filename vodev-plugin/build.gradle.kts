@@ -13,7 +13,7 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
-    mavenLocal()
+    maven("https://maven.enginehub.org/repo/")
 }
 
 dependencies {
