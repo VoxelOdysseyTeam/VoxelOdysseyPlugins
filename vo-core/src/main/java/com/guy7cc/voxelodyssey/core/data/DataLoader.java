@@ -22,12 +22,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.guy7cc.voxelodyssey.core.common.ExecutionOrder;
 import com.guy7cc.voxelodyssey.core.common.PluginLifecycleListener;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import com.guy7cc.voxelodyssey.core.util.ReflectionUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class DataLoader implements PluginLifecycleListener {
     private final JavaPlugin plugin;
@@ -131,7 +131,11 @@ public class DataLoader implements PluginLifecycleListener {
             }
             return true;
         } catch(SecurityException e) {
-            LogUtil.exception(plugin.getLogger(), String.format("Could not move and rename data file to %s due to security problem.", to.getName()), e);
+            plugin.getLogger().log(
+                    Level.SEVERE,
+                    String.format("Could not move and rename data file to %s due to security problem.", to.getName()),
+                    e
+            );
         }
         return false;
     }

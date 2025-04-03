@@ -23,11 +23,11 @@ import com.google.gson.JsonElement;
 import com.guy7cc.voxelodyssey.core.common.Copyable;
 import com.guy7cc.voxelodyssey.core.data.JsonSerializable;
 import com.guy7cc.voxelodyssey.core.data.DataFormatException;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import com.guy7cc.voxelodyssey.game.VOPlugin;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class VOElementalVector implements Copyable<VOElementalVector>, JsonSerializable<VOElementalVector> {
     public static final int LENGTH = VOElement.values().length;
@@ -103,7 +103,11 @@ public class VOElementalVector implements Copyable<VOElementalVector>, JsonSeria
             clone.array = Arrays.copyOf(this.array, LENGTH);
             return clone;
         } catch (CloneNotSupportedException exception) {
-            LogUtil.exception(VOPlugin.getPlugin().getLogger(), exception);
+            VOPlugin.getPlugin().getLogger().log(
+                    Level.SEVERE,
+                    "Failed to clone VOElementalVector",
+                    exception
+            );
         }
         return null;
     }

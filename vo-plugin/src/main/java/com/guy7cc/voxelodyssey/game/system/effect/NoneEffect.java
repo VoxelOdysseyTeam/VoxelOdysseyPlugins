@@ -20,10 +20,10 @@ package com.guy7cc.voxelodyssey.game.system.effect;
 
 import com.guy7cc.voxelodyssey.core.common.Copyable;
 import com.guy7cc.voxelodyssey.core.registry.Key;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import com.guy7cc.voxelodyssey.game.VOPlugin;
 
 import java.util.Optional;
+import java.util.logging.Level;
 
 public class NoneEffect extends VOEffect<NoneEffect.None> {
     public NoneEffect() {
@@ -48,7 +48,11 @@ public class NoneEffect extends VOEffect<NoneEffect.None> {
             try {
                 return (None) super.clone();
             } catch (CloneNotSupportedException exception) {
-                LogUtil.exception(VOPlugin.getPlugin().getLogger(), exception);
+                VOPlugin.getPlugin().getLogger().log(
+                        Level.SEVERE,
+                        "Failed to clone NoneEffect.None",
+                        exception
+                );
             }
             return null;
         }
