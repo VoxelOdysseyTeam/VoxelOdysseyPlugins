@@ -19,12 +19,12 @@
 package com.guy7cc.voxelodyssey.core.data;
 
 import com.google.gson.*;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JsonFileIO {
@@ -45,9 +45,17 @@ public class JsonFileIO {
             writer.write(gson.toJson(element));
             writer.close();
         } catch (IOException exception) {
-            LogUtil.exception(logger, String.format("Could not save %s due to I/O errors. ", file), exception);
+            logger.log(
+                    Level.SEVERE,
+                    String.format("Could not save %s due to I/O errors. ", file),
+                    exception
+            );
         } catch (SecurityException exception) {
-            LogUtil.exception(logger, String.format("Could not save %s due to security problems.", file), exception);
+            logger.log(
+                    Level.SEVERE,
+                    String.format("Could not save %s due to security problems. ", file),
+                    exception
+            );
         }
     }
 
@@ -63,11 +71,23 @@ public class JsonFileIO {
         } catch (FileNotFoundException exception) {
             return null;
         } catch (IOException exception) {
-            LogUtil.exception(logger, String.format("Could not read %s due to I/O errors.", file), exception);
+            logger.log(
+                    Level.SEVERE,
+                    String.format("Could not read %s due to I/O errors.", file),
+                    exception
+            );
         } catch (JsonParseException exception) {
-            LogUtil.exception(logger, String.format("Could not read %s because the file format was invalid.", file), exception);
+            logger.log(
+                    Level.SEVERE,
+                    String.format("Could not read %s because the file format was invalid.", file),
+                    exception
+            );
         } catch (ClassCastException exception) {
-            LogUtil.exception(logger, String.format("Could not read %s because the element was not JsonObject", file), exception);
+            logger.log(
+                    Level.SEVERE,
+                    String.format("Could not read %s because the element was not JsonObject", file),
+                    exception
+            );
         }
         return null;
     }

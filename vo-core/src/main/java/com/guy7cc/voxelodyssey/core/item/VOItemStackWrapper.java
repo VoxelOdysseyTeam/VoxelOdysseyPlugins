@@ -28,7 +28,6 @@ import com.guy7cc.voxelodyssey.core.property.Property;
 import com.guy7cc.voxelodyssey.core.property.State;
 import com.guy7cc.voxelodyssey.core.property.VOCoreProperties;
 import com.guy7cc.voxelodyssey.core.registry.Key;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import com.guy7cc.voxelodyssey.core.util.TranslationUtil;
 import io.papermc.paper.adventure.PaperAdventure;
 import net.kyori.adventure.text.Component;
@@ -49,6 +48,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class VOItemStackWrapper extends AbstractWrapper<ItemStack> implements State<VOItem, VOItemStackWrapper> {
     protected VOItemStackWrapper(ItemStack itemStack) {
@@ -177,7 +177,12 @@ public class VOItemStackWrapper extends AbstractWrapper<ItemStack> implements St
                 JsonElement element = JsonParser.parseString(jsonStr);
                 return property.parseValue(element);
             } catch (DataFormatException e) {
-                LogUtil.exception(VoxelOdysseyCore.getLogger(), e);
+                VoxelOdysseyCore.getLogger()
+                                .log(
+                                        Level.SEVERE,
+                                        "ItemStack has invalid property " + property.getKey(),
+                                        e
+                                );
                 return property.defaultValue();
             }
         }

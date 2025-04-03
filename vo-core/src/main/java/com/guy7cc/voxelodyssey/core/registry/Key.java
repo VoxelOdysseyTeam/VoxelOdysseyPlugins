@@ -24,10 +24,10 @@ import com.guy7cc.voxelodyssey.core.common.Copyable;
 import com.guy7cc.voxelodyssey.core.VoxelOdysseyCore;
 import com.guy7cc.voxelodyssey.core.data.DataFormatException;
 import com.guy7cc.voxelodyssey.core.data.JsonSerializable;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 import org.bukkit.NamespacedKey;
 
 import java.util.Objects;
+import java.util.logging.Level;
 
 public final class Key implements Copyable<Key>, JsonSerializable<Key> {
     private static final NamespacedKey DEFAULT = new NamespacedKey(VoxelOdysseyCore.NAMESPACE, "default");
@@ -90,7 +90,11 @@ public final class Key implements Copyable<Key>, JsonSerializable<Key> {
             clone.handle = new NamespacedKey(this.handle.getNamespace(), this.handle.getKey());
             return clone;
         } catch (CloneNotSupportedException exception) {
-            LogUtil.exception(VoxelOdysseyCore.getLogger(), exception);
+            VoxelOdysseyCore.getLogger().log(
+                    Level.SEVERE,
+                    "Failed to clone Key",
+                    exception
+            );
         }
         return null;
     }

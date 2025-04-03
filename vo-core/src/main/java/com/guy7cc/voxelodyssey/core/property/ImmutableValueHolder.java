@@ -20,9 +20,9 @@ package com.guy7cc.voxelodyssey.core.property;
 
 import com.guy7cc.voxelodyssey.core.VoxelOdysseyCore;
 import com.guy7cc.voxelodyssey.core.common.Copyable;
-import com.guy7cc.voxelodyssey.core.util.LogUtil;
 
 import java.util.function.Function;
+import java.util.logging.Level;
 
 public class ImmutableValueHolder<T> implements Copyable<ImmutableValueHolder<T>> {
     public T value;
@@ -37,7 +37,11 @@ public class ImmutableValueHolder<T> implements Copyable<ImmutableValueHolder<T>
         try {
             return (ImmutableValueHolder<T>) super.clone();
         } catch (CloneNotSupportedException exception) {
-            LogUtil.exception(VoxelOdysseyCore.getLogger(), exception);
+            VoxelOdysseyCore.getLogger().log(
+                    Level.SEVERE,
+                    "Failed to clone ImmutableValueHolder",
+                    exception
+            );
         }
         return null;
     }
